@@ -3,12 +3,35 @@
 // ========================
 const WHATSAPP_NUMBER = '51993483753';
 
+
+const supabase = window.supabase.createClient(
+  'https://vgoqbaxragkkfqnmzlrq.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZnb3FiYXhyYWdra2Zxbm16bHJxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4OTcyMTksImV4cCI6MjA5NDQ3MzIxOX0.mSA5vNxzRZefNJMptTJiEIlDIDXxA25h7QPtXd01_ao'
+);
+
+
+
+let services = [];
+
+async function loadServicesSite() {
+  const { data, error } = await supabase
+    .from('services')
+    .select('*')
+    .eq('active', true);
+
+  if (error) {
+    console.error('Erro ao carregar serviços:', error);
+    return;
+  }
+
+  services = data;
+  renderBooking();
+}
+
+
+
 // Serviços
 
-let services = JSON.parse(localStorage.getItem('gp_services')) || [];
-
-// só ativos
-services = services.filter(s => s.active);
 
 
 
@@ -546,66 +569,66 @@ if (booking.otherServices) {
   goStep(4);
 }
 
-function submitBooking() {
+async function submitBooking() {
   const btn = document.getElementById('confirmBtn');
-  if (btn) { btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Enviando...'; }
-  // Simulate async submission
-  setTimeout(() => {
-    logBookingData();
-    booking.step = 5;
-    renderBooking();
-  }, 1500);
+
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span> Enviando...';
+  }
+
+  // ✅ chama o Supabase e espera terminar
+  await logBookingData();
+
+  // ✅ só DEPOIS muda de tela
+  booking.step = 5;
+  renderBooking();
 }
 
-function logBookingData() {
-  const bookings = JSON.parse(localStorage.getItem('gp_apps') || '[]');
+async function logBookingData() {
 
-  // ✅ nomes com tratamento de preço
+  // ✅ nomes dos serviços
   let serviceNames = booking.services.map(s => {
     return s.price === null
       ? `${s.name} (A combinar)`
       : s.name;
   });
 
-  // ✅ soma só serviços com preço
+  // ✅ soma total
   let totalPrice = booking.services.reduce((s, x) => {
     return x.price === null ? s : s + Number(x.price || 0);
   }, 0);
 
-  // ✅ adiciona personalizados se existir
+  // ✅ personalizados
   if (booking.otherServices) {
     serviceNames.push('Personalizados (A combinar)');
   }
 
-  bookings.push({
-    id: Date.now(),
-
+  // ✅ dados para banco
+  const data = {
     name: booking.name,
     tel: booking.phone,
-
     date: booking.date,
     time: booking.time,
-
-    // ✅ agora vai com "A combinar"
     services: serviceNames,
-
-    // ✅ só soma valores válidos
     price: totalPrice,
-
     status: 'open',
+    barber_id: booking.barber?.id || null,
+    duration: booking.services.length
+      ? booking.services.reduce((s, x) => s + (x.duration || 30), 0)
+      : 30
+  };
 
-    barberId: String(booking.barber?.id || ''),
+  // ✅ INSERT NO SUPABASE
+  const { error } = await supabase
+    .from('appointments')
+    .insert([data]);
 
-    
-duration: booking.services.length
-  ? booking.services.reduce((s, x) => s + (x.duration || 30), 0)
-  : 30
-
-  });
-
-  localStorage.setItem('gp_apps', JSON.stringify(bookings));
+  if (error) {
+    console.error('Erro ao salvar:', error);
+    alert('Erro ao salvar agendamento');
+  }
 }
-
 
 function resetBooking() {
   booking = {
@@ -912,7 +935,7 @@ document.querySelectorAll('.nav-links a').forEach(a => {
 // INIT
 // ========================
 loadBarbersFromSystem();
-renderBooking();
+loadServicesSite();
 renderProducts();
 
 // 🔁 Atualizar horários automaticamente (a cada 1 min)
