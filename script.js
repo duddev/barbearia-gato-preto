@@ -1,20 +1,22 @@
-// ========================
+
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+const sb = createClient(
+  'https://vgoqbaxragkkfqnmzlrq.supabase.co',
+  'SUA_KEY'
+);
+
+/// ========================
 // DATA
 // ========================
 const WHATSAPP_NUMBER = '51993483753';
-
-
-const supabase = window.supabase.createClient(
-  'https://vgoqbaxragkkfqnmzlrq.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZnb3FiYXhyYWdra2Zxbm16bHJxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4OTcyMTksImV4cCI6MjA5NDQ3MzIxOX0.mSA5vNxzRZefNJMptTJiEIlDIDXxA25h7QPtXd01_ao'
-);
 
 
 
 let services = [];
 
 async function loadServicesSite() {
-  const { data, error } = await supabase
+  const { data, error } = await sb
     .from('services')
     .select('*')
     .eq('active', true);
@@ -577,7 +579,7 @@ async function submitBooking() {
     btn.innerHTML = '<span class="spinner"></span> Enviando...';
   }
 
-  // ✅ chama o Supabase e espera terminar
+  // ✅ chama o sb e espera terminar
   await logBookingData();
 
   // ✅ só DEPOIS muda de tela
@@ -619,8 +621,8 @@ async function logBookingData() {
       : 30
   };
 
-  // ✅ INSERT NO SUPABASE
-  const { error } = await supabase
+  // ✅ INSERT NO sb
+  const { error } = await sb
     .from('appointments')
     .insert([data]);
 
@@ -1078,6 +1080,11 @@ ambInit();
 console.log('%c🐱 Barbearia Gato Preto', 'color:#008b8b;font-family:Oswald;font-size:18px;font-weight:700;');
 console.log('%cSite desenvolvido com atitude e estilo.', 'color:#666;font-style:italic;');
 
+
+
+
+
+
 // ========================
 // Contato
 // ========================
@@ -1173,3 +1180,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 elements.forEach(el => upDownObserver.observe(el));
 });
+
+
+
+// ========================
+// EXPOSE FUNCTIONS (MODULE FIX)
+// ========================
+window.ambSlide = ambSlide;
+window.ambGo = ambGo;
+window.selectBarber = selectBarber;
+window.selectService = selectService;
+window.selectDate = selectDate;
+window.selectTime = selectTime;
+window.goStep = goStep;
+window.scrollToBooking = scrollToBooking;
+window.submitBooking = submitBooking;
+window.resetBooking = resetBooking;
+window.calPrev = calPrev;
+window.calNext
