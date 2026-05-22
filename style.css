@@ -869,392 +869,11 @@ nav {
 }
 
 
-  /* ===== SOBRE ===== */
- #sobre {
-  background: var(--teal);
-  padding: 80px 2rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.sobre-bg {
-  position: absolute;
-  inset: 0;
-  opacity: 0.05;
-  background-image: repeating-linear-gradient(
-    -45deg,
-    var(--black) 0,
-    var(--black) 1px,
-    transparent 0,
-    transparent 50%
-  );
-  background-size: 16px 16px;
-}
-
-.sobre-inner {
-  max-width: 900px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
-  position: relative;
-  z-index: 1;
-}
-
-/* ===== SOBRE -FOTO ===== */
-
-
-/* ===== ANIMAÇÃO SOBRE ===== */
-.sobre-move .sobre-foto {
-  transform: translateY(40px) scale(1);
-  transition: transform 0.8s ease;
-}
-
-.sobre-text-box {
-  opacity: 0;
-  transform: translateX(80px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.sobre-move.ativo .sobre-foto {
-  transform: translate(-40px, -60px) scale(0.88);
-}
-
-.sobre-move.ativo .sobre-text-box {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-
-.sobre-foto {
-  display: flex;
-  justify-content: center;
-  will-change: transform;
-}
-
-.foto-moldura {
-  padding: 12px;
-  border: 2px solid #111;
-  border-radius: 18px;
-  background: linear-gradient(145deg, #000, #222);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-}
-
-.sobre-img {
-  width: 100%;
-  max-width: 360px;
-  display: block;
-  border-radius: 12px;
-}
-
-/* ===== SOBRE - TEXTO ===== */
-/* ===== SOBRE ===== */
-#sobre {
-  background: var(--teal);
-  padding: 80px 2rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.sobre-bg {
-  position: absolute;
-  inset: 0;
-  opacity: 0.05;
-  background-image: repeating-linear-gradient(
-    -45deg,
-    var(--black) 0,
-    var(--black) 1px,
-    transparent 0,
-    transparent 50%
-  );
-  background-size: 16px 16px;
-}
-
-.sobre-inner {
-  max-width: 900px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
-  position: relative;
-  z-index: 1;
-}
-
-/* ===== SOBRE - FOTO ===== */
-.sobre-foto {
-  display: flex;
-  justify-content: center;
-  will-change: transform;
-  position: relative;
-}
-
-.foto-moldura {
-  padding: 12px;
-  border: 2px solid #111;
-  border-radius: 18px;
-  background: linear-gradient(145deg, #000, #222);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.sobre-img {
-  width: 100%;
-  max-width: 360px;
-  display: block;
-  border-radius: 12px;
-}
-
-/* ===== ANIMAÇÃO SOBRE - ESTADOS INICIAIS ===== */
-.sobre-move .sobre-foto {
-  transform: translateY(40px) scale(1);
-  opacity: 0;
-}
-
-.sobre-text-box {
-  opacity: 0;
-  transform: translateX(80px);
-}
-
-/* ===== ANIMAÇÃO SOBRE - ESTADO ATIVO ===== */
-.sobre-move.ativo .sobre-foto {
-  transform: translateY(0) scale(1);
-  opacity: 1;
-  animation: fotoSlideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-
-.sobre-move.ativo .sobre-text-box {
-  opacity: 1;
-  transform: translateX(0);
-  animation: textSlideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-
-/* ===== ANIMAÇÃO SOBRE - SCROLL PARALLAX ===== */
-.sobre-move.scroll-active .sobre-foto {
-  animation: fotoParallax 0.6s ease-out forwards;
-}
-
-.sobre-move.scroll-active .sobre-text-box {
-  animation: textParallax 0.6s ease-out forwards;
-}
 
 
 
-/* ===== SOBRE – CASCATA ===== */
-
-.sobre-section {
-  position: relative;
-  padding: 100px 2rem;
-  overflow: hidden;
-}
-
-.sobre-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 420px 1fr;
-  gap: 4rem;
-  position: relative;
-  z-index: 2;
-}
-
-/* Base dos itens da cascata */
-.cascade-item {
-  opacity: 0;
-  transform: translateY(30px);
-  transition:
-    opacity 0.7s ease,
-    transform 0.7s cubic-bezier(.22,.61,.36,1);
-}
-
-/* Quando ativa */
-.reveal-cascade.active .cascade-item {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Delay em cascata */
-.reveal-cascade.active .cascade-item:nth-child(1) { transition-delay: .1s; }
-.reveal-cascade.active .cascade-item:nth-child(2) { transition-delay: .25s; }
-.reveal-cascade.active .cascade-item:nth-child(3) { transition-delay: .4s; }
-.reveal-cascade.active .cascade-item:nth-child(4) { transition-delay: .55s; }
-.reveal-cascade.active .cascade-item:nth-child(5) { transition-delay: .7s; }
-
-/* Título */
-.sobre-heading {
-  font-family: 'Bebas Neue', 'Oswald', sans-serif;
-  font-size: clamp(2.8rem, 6vw, 4.5rem);
-  letter-spacing: 0.08em;
-  line-height: 1;
-  margin-bottom: 1.5rem;
-}
-
-/* Texto */
-.sobre-text p {
-  font-family: 'Merriweather', serif;
-  font-style: italic;
-  font-size: 0.92rem;
-  line-height: 1.8;
-  margin-bottom: 1.4rem;
-}
-
-/* Responsivo */
-@media (max-width: 768px) {
-  .sobre-inner {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-}
 
 
-/* ===== KEYFRAMES - ENTRADA ===== */
-@keyframes fotoSlideIn {
-  from {
-    transform: translateY(40px) scale(0.95);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes textSlideIn {
-  from {
-    transform: translateX(80px);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-/* ===== KEYFRAMES - PARALLAX SCROLL ===== */
-@keyframes fotoParallax {
-  from {
-    transform: translateY(0) scale(1);
-  }
-  to {
-    transform: translateY(-60px) scale(0.88);
-    position: sticky;
-    top: 50%;
-  }
-}
-
-@keyframes textParallax {
-  from {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateX(-40px);
-    opacity: 0.95;
-  }
-}
-
-/* ===== SOBRE - TEXTO ===== */
-.sobre-heading {
-  font-family: 'Bebas Neue', 'Oswald', sans-serif;
-  font-size: clamp(3rem, 7vw, 5.5rem);
-  color: var(--black);
-  letter-spacing: 0.06em;
-  line-height: 1;
-  opacity: 0;
-  animation: headingReveal 0.9s ease-out 0.2s forwards;
-}
-
-.sobre-text {
-  font-family: 'Merriweather', serif;
-  font-style: italic;
-  color: rgba(0,0,0,0.75);
-  font-size: 1rem;
-  line-height: 1.8;
-  opacity: 0;
-}
-
-.sobre-text p {
-  animation: paragraphReveal 0.8s ease-out forwards;
-}
-
-.sobre-text p:nth-child(1) {
-  animation-delay: 0.3s;
-}
-
-.sobre-text p:nth-child(2) {
-  animation-delay: 0.5s;
-}
-
-.sobre-text p:nth-child(3) {
-  animation-delay: 0.7s;
-}
-
-.sobre-text p + p {
-  margin-top: 1rem;
-}
-
-/* ===== KEYFRAMES - TEXTO ===== */
-@keyframes headingReveal {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes paragraphReveal {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ===== SOBRE - MOBILE ===== */
-@media (max-width: 768px) {
-  .foto-moldura {
-    max-width: 90%;
-  }
-
-  .sobre-foto {
-    margin-bottom: 1.5rem;
-  }
-
-  .sobre-move.scroll-active .sobre-foto {
-    animation: fotoParallaxMobile 0.6s ease-out forwards;
-  }
-
-  @keyframes fotoParallaxMobile {
-    from {
-      transform: translateY(0) scale(1);
-    }
-    to {
-      transform: translateY(-30px) scale(0.95);
-    }
-  }
-}
-
-@media (max-width: 640px) {
-  .sobre-inner {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .sobre-heading {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-  }
-
-  .sobre-text {
-    font-size: 0.95rem;
-  }
-}
 
   /* ===== CONTATO ===== */
   #contato {
@@ -1534,9 +1153,6 @@ section {
 }
 /* ===== SOBRE ===== */
 
-
-/* ===== SOBRE CLEAN ===== */
-
 .sobre-section {
   background: var(--teal);
   padding: 100px 20px;
@@ -1545,10 +1161,28 @@ section {
 .sobre-inner {
   max-width: 1100px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 420px 1fr;
+  display: flex !important;
+  flex-direction: row !important;
   gap: 4rem;
   align-items: center;
+}
+
+.sobre-foto {
+  flex: 0 0 360px;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.sobre-section.visible .sobre-foto {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.sobre-text-box {
+  flex: 1;
+  min-width: 0;
 }
 
 .sobre-heading {
@@ -1558,6 +1192,14 @@ section {
   line-height: 1;
   color: white;
   margin-bottom: 0.5rem;
+  /* animação */
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease 0.15s, transform 0.6s ease 0.15s;
+}
+.sobre-section.visible .sobre-heading {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .sobre-sub {
@@ -1566,6 +1208,14 @@ section {
   letter-spacing: 0.25em;
   color: rgba(255,255,255,0.6);
   margin-bottom: 1.5rem;
+  /* animação */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease 0.28s, transform 0.6s ease 0.28s;
+}
+.sobre-section.visible .sobre-sub {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .sobre-text-box p {
@@ -1575,12 +1225,17 @@ section {
   line-height: 1.8;
   color: rgba(255,255,255,0.85);
   margin-bottom: 1.2rem;
+  /* animação */
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
-
-/* FOTO */
-.sobre-foto {
-  display: flex;
-  justify-content: center;
+.sobre-text-box p:nth-child(1) { transition-delay: 0.38s; }
+.sobre-text-box p:nth-child(2) { transition-delay: 0.50s; }
+.sobre-text-box p:nth-child(3) { transition-delay: 0.62s; }
+.sobre-section.visible .sobre-text-box p {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .foto-moldura {
@@ -1592,4 +1247,392 @@ section {
 .sobre-img {
   max-width: 360px;
   border-radius: 12px;
+  display: block;
+}
+
+/* mobile */
+@media (max-width: 860px) {
+  .sobre-section { padding: 60px 20px; }
+  .sobre-inner {
+    flex-direction: column !important;
+    gap: 2rem;
+    text-align: center;
+  }
+  .sobre-foto { flex: 0 0 auto; width: 100%; }
+  .sobre-img { max-width: 240px; margin: 0 auto; }
+  .foto-moldura { display: inline-block; }
+  .sobre-heading { font-size: clamp(2.5rem, 10vw, 3.5rem); }
+  .sobre-text-box p { text-align: left; }
+}
+
+/* ===== SERVIÇOS — ROLLBACK FUNCIONAL + CORES DO SITE ===== */
+/* Mantém o layout funcional que ficou bom e só ajusta a cor para o teal oficial. */
+
+.servicos-clean,
+.servicos-clean *,
+.servicos-clean *::before,
+.servicos-clean *::after {
+  animation: none !important;
+}
+
+.servicos-clean {
+  background: linear-gradient(180deg, #050505 0%, #062424 52%, #050505 100%) !important;
+  padding: 44px 20px !important;
+}
+
+.servicos-clean-inner {
+  width: min(100%, 1080px) !important;
+  margin: 0 auto !important;
+  padding: 22px 28px !important;
+
+  display: grid !important;
+  grid-template-columns: auto 1fr !important;
+  align-items: center !important;
+  gap: 28px !important;
+
+  position: relative !important;
+  overflow: visible !important;
+
+  background: linear-gradient(
+    135deg,
+    rgba(0,139,139,.18),
+    rgba(255,255,255,.04) 46%,
+    rgba(0,102,102,.18)
+  ) !important;
+
+  border: 1px solid rgba(0,139,139,.42) !important;
+  border-radius: 22px !important;
+
+  box-shadow:
+    0 18px 45px rgba(0,0,0,.28),
+    inset 0 0 0 1px rgba(255,255,255,.035) !important;
+}
+
+.servicos-clean-inner::before,
+.servicos-clean-list::before,
+.servicos-clean-list button::before {
+  content: none !important;
+}
+
+.servicos-clean-title {
+  position: relative !important;
+  z-index: 2 !important;
+
+  font-family: 'Merriweather', Georgia, serif !important;
+  font-style: italic !important;
+  font-size: .86rem !important;
+  line-height: 1 !important;
+  font-weight: 400 !important;
+  letter-spacing: .01em !important;
+  text-transform: none !important;
+
+  color: rgba(255,255,255,.84) !important;
+  white-space: nowrap !important;
+}
+
+.servicos-clean-list {
+  position: relative !important;
+  z-index: 2 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  flex-wrap: wrap !important;
+  gap: 10px !important;
+}
+
+.servicos-clean-list button {
+  width: auto !important;
+  min-height: 42px !important;
+  padding: 10px 18px !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  background: rgba(255,255,255,.055) !important;
+  border: 1px solid rgba(255,255,255,.13) !important;
+  border-radius: 999px !important;
+
+  font-family: 'Bebas Neue', 'Oswald', sans-serif !important;
+  font-size: clamp(1rem, 1.55vw, 1.28rem) !important;
+  line-height: 1 !important;
+  font-weight: 400 !important;
+  letter-spacing: .09em !important;
+  text-transform: uppercase !important;
+
+  color: rgba(255,255,255,.96) !important;
+  text-shadow: none !important;
+
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  position: relative !important;
+  overflow: hidden !important;
+  z-index: 1 !important;
+
+  transform: none !important;
+  transition:
+    color .22s ease,
+    border-color .22s ease,
+    background .22s ease,
+    transform .22s ease,
+    box-shadow .22s ease !important;
+}
+
+/* brilho interno, sem interferir no clique */
+.servicos-clean-list button::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0,168,150,.34),
+    transparent
+  ) !important;
+
+  transform: translateX(-120%) !important;
+  transition: transform .55s ease !important;
+}
+
+.servicos-clean-list button:hover,
+.servicos-clean-list button:focus-visible {
+  color: #ffffff !important;
+  background: rgba(0,139,139,.26) !important;
+  border-color: var(--teal-light) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 24px rgba(0,139,139,.22) !important;
+  outline: none !important;
+}
+
+.servicos-clean-list button:hover::after,
+.servicos-clean-list button:focus-visible::after {
+  transform: translateX(120%) !important;
+}
+
+@media (max-width: 760px) {
+  .servicos-clean {
+    padding: 34px 16px !important;
+  }
+
+  .servicos-clean-inner {
+    grid-template-columns: 1fr !important;
+    justify-items: center !important;
+    text-align: center !important;
+    gap: 18px !important;
+    padding: 22px 18px !important;
+    border-radius: 18px !important;
+  }
+
+  .servicos-clean-title {
+    font-size: .82rem !important;
+  }
+
+  .servicos-clean-list {
+    width: 100% !important;
+    justify-content: center !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+
+  .servicos-clean-list button {
+    width: 100% !important;
+    min-height: 46px !important;
+    padding: 12px 10px !important;
+    font-size: 1.08rem !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .servicos-clean-list {
+    grid-template-columns: 1fr !important;
+  }
+}
+/* ===== SERVIÇOS — CORES CORRIGIDAS / SEM NEON ===== */
+/* Mantém o layout atual. Só troca a paleta visual. */
+
+.servicos-clean {
+  background: var(--black) !important;
+}
+
+.servicos-clean-inner {
+  background: rgba(255,255,255,.035) !important;
+
+  border: 1px solid rgba(255,255,255,.08) !important;
+
+  box-shadow:
+    0 18px 45px rgba(0,0,0,.28),
+    inset 0 0 0 1px rgba(255,255,255,.025) !important;
+}
+
+.servicos-clean-title {
+  color: rgba(255,255,255,.48) !important;
+  text-shadow: none !important;
+}
+
+.servicos-clean-list button {
+  background: rgba(255,255,255,.045) !important;
+  border: 1px solid rgba(255,255,255,.10) !important;
+
+  color: rgba(255,255,255,.82) !important;
+
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+/* brilho interno mais discreto e na cor do site */
+.servicos-clean-list button::after {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0,139,139,.22),
+    transparent
+  ) !important;
+}
+
+.servicos-clean-list button:hover,
+.servicos-clean-list button:focus-visible {
+  color: #ffffff !important;
+
+  background: rgba(0,139,139,.18) !important;
+  border-color: rgba(0,139,139,.65) !important;
+
+  box-shadow: none !important;
+  transform: translateY(-1px) !important;
+}
+
+
+/* =========================================================
+   QUICKNAV FINAL — sem bug no scroll + tamanho legível
+   Mantém a ideia dos ovinhos, mas remove o que causava flicker/trava.
+   ========================================================= */
+
+@media (max-width: 768px) {
+  /* O reveal nessa área estava causando repintura quando passava rápido */
+  #quicknav .reveal,
+  .quicknav-grid.reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  #quicknav {
+    padding-top: 18px !important;
+    padding-bottom: 46px !important;
+    overflow: visible !important;
+    contain: none !important;
+  }
+
+  .quicknav-grid {
+    width: 100% !important;
+    max-width: 360px !important;
+    margin: 0 auto !important;
+
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 22px 18px !important;
+
+    align-items: start !important;
+    justify-items: center !important;
+  }
+
+  .quicknav-card {
+    width: 100% !important;
+    max-width: 150px !important;
+    margin: 0 !important;
+    right: auto !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: .8rem !important;
+
+    transform: none !important;
+    transition: none !important;
+    contain: none !important;
+  }
+
+  .quicknav-card:hover {
+    transform: none !important;
+  }
+
+  .quicknav-pill {
+    width: 118px !important;
+    height: 178px !important;
+    max-width: none !important;
+    aspect-ratio: auto !important;
+
+    margin: 0 auto !important;
+    border-radius: 999px !important;
+    overflow: hidden !important;
+
+    /* remove GPU/contain que estava gerando bug visual em alguns celulares */
+    contain: none !important;
+    transform: none !important;
+    backface-visibility: visible !important;
+    will-change: auto !important;
+
+    background-color: rgba(0,139,139,.14) !important;
+  }
+
+  .quicknav-pill img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+
+    transform: none !important;
+    backface-visibility: visible !important;
+    will-change: auto !important;
+  }
+
+  .quicknav-card span {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+
+    font-size: .92rem !important;
+    line-height: 1.1 !important;
+    letter-spacing: .035em !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .quicknav-grid {
+    max-width: 330px !important;
+    gap: 20px 14px !important;
+  }
+
+  .quicknav-card {
+    max-width: 138px !important;
+  }
+
+  .quicknav-pill {
+    width: 108px !important;
+    height: 164px !important;
+  }
+
+  .quicknav-card span {
+    font-size: .86rem !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .quicknav-grid {
+    max-width: 300px !important;
+    gap: 18px 12px !important;
+  }
+
+  .quicknav-card {
+    max-width: 130px !important;
+  }
+
+  .quicknav-pill {
+    width: 100px !important;
+    height: 152px !important;
+  }
 }
