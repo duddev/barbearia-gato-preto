@@ -1,9 +1,8 @@
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
-
-export const sb = createClient(
+const sb = createClient(
   'https://vgoqbaxragkkfqnmzlrq.supabase.co',
-  'sb_publishable_bJ23lq8V3rmZI3FV_bd3mg_N9YIqMlx'
+  'SUA_KEY'
 );
 
 /// ========================
@@ -871,14 +870,27 @@ function animateCat() {
   cat.style.marginTop = float + 'px';
 }
 
-if (!reducedMotion) {
-  // Initial position
+// Performance: no mobile o gato fixo + listener de scroll pesa ao rolar rápido.
+// Desktop mantém a animação, mas com requestAnimationFrame.
+const isTouchMobile = window.matchMedia('(max-width: 768px)').matches;
+let catTicking = false;
+
+function animateCatRaf() {
+  if (catTicking) return;
+  catTicking = true;
+  requestAnimationFrame(() => {
+    animateCat();
+    catTicking = false;
+  });
+}
+
+if (!reducedMotion && !isTouchMobile && cat) {
   cat.style.right = '10px';
   cat.style.top = '100px';
   cat.style.opacity = '1';
-  window.addEventListener('scroll', animateCat, { passive: true });
-  animateCat();
-} else {
+  window.addEventListener('scroll', animateCatRaf, { passive: true });
+  animateCatRaf();
+} else if (cat) {
   cat.style.display = 'none';
 }
 
@@ -1109,20 +1121,27 @@ console.log('%cSite desenvolvido com atitude e estilo.', 'color:#666;font-style:
 // ========================
 
 // ===== SOBRE – EFEITO CASCATA =====
-const cascadeSection = document.querySelector('.reveal-cascade');
+function initSobre() {
+  const sobreSection = document.querySelector('.sobre-section');
+  if (!sobreSection) return;
 
-if (cascadeSection) {
-  const cascadeObserver = new IntersectionObserver(
-    ([entry]) => {
-      if (entry.isIntersecting) {
-        cascadeSection.classList.add('active');
-        cascadeObserver.disconnect();
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        sobreSection.classList.add('visible');
+      } else {
+        sobreSection.classList.remove('visible');
       }
-    },
-    { threshold: 0.2 }
-  );
+    });
+  }, { threshold: 0, rootMargin: '0px 0px -80px 0px' });
 
-  cascadeObserver.observe(cascadeSection);
+  obs.observe(sobreSection);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initSobre);
+} else {
+  initSobre();
 }
 
 
@@ -1138,48 +1157,6 @@ if (cascadeSection) {
   /**
    * Intersection Observer: Dispara animação quando seção entra em view
    */
-
-
-
-// ========================
-// INICIALIZAÇÃO
-// ========================
-
-// ===== SOBRE ANIMAÇÃO =====
-
-const elements = document.querySelectorAll(
-  '.sobre-img, .reveal-text'
-);
-
-const sobreObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, {
-  threshold: 0.25
-});
-
-elements.forEach(el => sobreObserver.observe(el));
-// Log de confirmação
-console.log('%c🐱 Animações Sobre - Ativadas', 'color:#008b8b;font-family:Oswald;font-size:14px;font-weight:700;');
-document.addEventListener('DOMContentLoaded', () => {
-
-  const elements = document.querySelectorAll('.reveal-up, .reveal-down');
-
-  const upDownObserver  = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-      }
-    });
-  }, {
-    threshold: 0.2
-  });
-
-elements.forEach(el => upDownObserver.observe(el));
-});
 
 
 
