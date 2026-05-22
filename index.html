@@ -7,6 +7,11 @@
 <meta property="og:title" content="Barbearia Gato Preto">
 <meta property="og:description" content="Onde estilo, tradição e atitude se encontram.">
 <title>Barbearia Gato Preto</title>
+
+<link rel="preload" as="image" href="imagens/ambiente.svg" type="image/svg+xml">
+<link rel="preload" as="image" href="imagens/produtos.svg" type="image/svg+xml">
+<link rel="preload" as="image" href="imagens/agenda.svg" type="image/svg+xml">
+<link rel="preload" as="image" href="imagens/localizacao.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/barbearia-gato-preto/style.css">
 </head>
 <body>
@@ -124,27 +129,27 @@
   <div class="quicknav-grid reveal">
     <a href="#ambiente" class="quicknav-card">
       <div class="quicknav-pill pill-ambiente">
-        <img src="imagens/ambiente.svg" alt="" style="width:100%;height:100%;">
+        <img src="imagens/ambiente.svg" alt="Ambiente" width="220" height="400" decoding="async" fetchpriority="high" style="width:100%;height:100%;">
        
       </div>
       <span>Ambiente</span>
     </a>
     <a href="#produtos" class="quicknav-card">
       <div class="quicknav-pill pill-produtos">
-         <img src="imagens/produtos.svg" alt="" style="width:100%;height:100%;">
+         <img src="imagens/produtos.svg" alt="Produtos" width="220" height="400" decoding="async" fetchpriority="high" style="width:100%;height:100%;">
 
       </div>
       <span>Produtos</span>
     </a>
     <a href="#agendamento" class="quicknav-card">
       <div class="quicknav-pill pill-agenda">
-         <img src="imagens/agenda.svg" alt="" style="width:100%;height:100%;">
+         <img src="imagens/agenda.svg" alt="Agenda" width="220" height="400" decoding="async" fetchpriority="high" style="width:100%;height:100%;">
       </div>
       <span>Agenda</span>
     </a>
     <a href="#contato" class="quicknav-card">
       <div class="quicknav-pill pill-endereco">
-         <img src="imagens/localizacao.svg" alt="" style="width:100%;height:100%;">
+         <img src="imagens/localizacao.svg" alt="Endereço" width="220" height="400" decoding="async" fetchpriority="high" style="width:100%;height:100%;">
       </div>
       <span>Endereço</span>
     </a>
@@ -205,56 +210,19 @@
 </section>
 
 <!-- ===== SERVICES ===== -->
-<section id="servicos">
-  <div class="section-header reveal">
-    <div class="section-label">Nossos Serviços</div>
-    <div class="section-title">CORTE. BARBA.<br>ESTILO.</div>
-  </div>
+<!-- ===== SERVIÇOS ===== -->
+<section id="servicos" class="servicos-clean">
+  <div class="servicos-clean-inner reveal">
 
-  <div class="services-grid">
-    <div class="service-card reveal">
-      <div class="service-icon">✂️</div>
-      <div class="service-name">Corte Cabelo</div>
-      <div class="service-desc">Corte personalizado feito à mão com máquina e tesoura, respeitando o formato do seu rosto e o seu estilo.</div>
-      <div class="service-meta">
-        <span class="service-price">R$ 45</span>
-        <span class="service-duration">~40 min</span>
-      </div>
-      <button class="service-book-btn" onclick="scrollToBooking('Corte Masculino')">Agendar</button>
+    <span class="servicos-clean-title">Serviços</span>
+
+    <div class="servicos-clean-list">
+      <button onclick="scrollToBooking('Corte Masculino')">Corte</button>
+      <button onclick="scrollToBooking('Barba Completa')">Barba</button>
+      <button onclick="scrollToBooking('Sobrancelha')">Sobrancelha</button>
+      <button onclick="scrollToBooking('Combo Premium')">Personalizado</button>
     </div>
 
-    <div class="service-card reveal" style="transition-delay:0.08s;">
-      <div class="service-icon">🪒</div>
-      <div class="service-name">Barba Completa</div>
-      <div class="service-desc">Modelagem e acabamento completo da barba com navalha, toalha quente e produtos premium da linha Gato Preto.</div>
-      <div class="service-meta">
-        <span class="service-price">R$ 35</span>
-        <span class="service-duration">~30 min</span>
-      </div>
-      <button class="service-book-btn" onclick="scrollToBooking('Barba Completa')">Agendar</button>
-    </div>
-
-    <div class="service-card reveal" style="transition-delay:0.16s;">
-      <div class="service-icon">⚡</div>
-      <div class="service-name">Personalizados</div>
-      <div class="service-desc">Serviços personalizados sob medida para atender às suas necessidades específicas.</div>
-      <div class="service-meta">
-        <span class="service-price">A combinar</span>
-
-      </div>
-      <button class="service-book-btn" onclick="scrollToBooking('Combo Premium')">Agendar</button>
-    </div>
-
-    <div class="service-card reveal" style="transition-delay:0.08s;">
-      <div class="service-icon">💈</div>
-      <div class="service-name">Sobrancelha</div>
-      <div class="service-desc">Caso queira fazer somente a sobrancelha, aqui você encontra o melhor acabamento com produtos premium.</div>
-      <div class="service-meta">
-        <span class="service-price">R$ 15</span>
-        <span class="service-duration">~10 min</span>
-      </div>
-      <button class="service-book-btn" onclick="scrollToBooking('Corte Degradê')">Agendar</button>
-    </div>
   </div>
 </section>
 
